@@ -4,22 +4,29 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <title>Wedding Flower Puzzle</title>
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Parisienne&display=swap');
+
+
+/* =========================================================
+   기본 설정
+========================================================= */
 
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
+
   background: #fff8f4;
   color: #513c38;
+
   font-family: 'Gowun Dodum', sans-serif;
 }
 
@@ -46,13 +53,14 @@ button {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
   padding: 24px;
 
   background:
     radial-gradient(
       circle at 30% 18%,
-      rgba(255,255,255,.98),
-      rgba(255,255,255,0) 30%
+      rgba(255, 255, 255, .98),
+      rgba(255, 255, 255, 0) 30%
     ),
     linear-gradient(
       160deg,
@@ -64,39 +72,55 @@ button {
 
 .start-emoji {
   font-size: 56px;
-  animation: float 2.8s ease-in-out infinite;
+
+  animation:
+    float 2.8s ease-in-out infinite;
 }
 
 .start-title {
+  margin-top: 12px;
+
   font-family: 'Parisienne', cursive;
   font-size: 48px;
+
   color: #b56f75;
-  margin-top: 12px;
 }
 
 .start-sub {
+  margin: 2px 0 32px;
+
   font-size: 14px;
   color: #98706c;
-  margin: 2px 0 32px;
 }
 
 .start-btn {
   width: 154px;
   height: 54px;
 
-  border-radius: 999px;
   border: 1px solid #daa1a4;
+  border-radius: 999px;
 
-  background: rgba(255,255,255,.72);
+  background:
+    rgba(255, 255, 255, .72);
+
   color: #9e6266;
 
-  letter-spacing: 3px;
   font-size: 17px;
+  letter-spacing: 3px;
 
-  box-shadow: 0 12px 30px rgba(139,83,88,.16);
+  box-shadow:
+    0 12px 30px rgba(139, 83, 88, .16);
+
+  cursor: pointer;
 }
 
 @keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
   50% {
     transform: translateY(-8px);
   }
@@ -109,43 +133,58 @@ button {
 
 #game {
   flex-direction: column;
-  background: linear-gradient(#fffaf7,#fff2ec);
+
+  background:
+    linear-gradient(
+      #fffaf7,
+      #fff2ec
+    );
 }
 
+
+/* 상단 제목 */
+
 .top {
+  position: relative;
+
   height: 58px;
 
   display: flex;
   align-items: center;
   justify-content: center;
-
-  position: relative;
 }
 
 .top h1 {
+  margin: 0;
+
   font-size: 16px;
   font-weight: 500;
-  margin: 0;
 }
 
 .count {
   position: absolute;
+
   right: 16px;
 
   font-size: 12px;
+
   color: #a87975;
 }
 
 
-/* 퍼즐 판 */
+/* =========================================================
+   퍼즐 판
+========================================================= */
 
 .board-wrap {
   flex: 1;
   min-height: 0;
 
-  padding: 0 14px 8px;
+  padding:
+    0 14px 8px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 }
@@ -153,30 +192,37 @@ button {
 .board {
   position: relative;
 
-  width: min(92vw, 48vh);
-  aspect-ratio: 451 / 736;
+  width:
+    min(92vw, 48vh);
 
-  background: #f4e8df;
+  aspect-ratio:
+    451 / 736;
 
-  border-radius: 18px;
   overflow: hidden;
 
+  background:
+    #f4e8df;
+
+  border-radius:
+    18px;
+
   box-shadow:
-    0 12px 34px rgba(114,75,68,.15),
-    inset 0 0 0 1px rgba(178,135,126,.14);
+    0 12px 34px rgba(114, 75, 68, .15),
+    inset 0 0 0 1px rgba(178, 135, 126, .14);
 }
 
 
-/* 빈 퍼즐 배경 */
+/* 빈 퍼즐판 */
 
 .placeholder {
   position: absolute;
+
   inset: 0;
 
   background:
     linear-gradient(
-      rgba(255,255,255,.23),
-      rgba(255,255,255,.23)
+      rgba(255, 255, 255, .23),
+      rgba(255, 255, 255, .23)
     ),
     radial-gradient(
       circle at 50% 35%,
@@ -186,7 +232,9 @@ button {
 }
 
 
-/* 4 × 4 퍼즐 칸 */
+/* =========================================================
+   4 × 4 퍼즐 칸
+========================================================= */
 
 .cell {
   position: absolute;
@@ -194,15 +242,19 @@ button {
   width: 25%;
   height: 25%;
 
-  border: .5px solid rgba(153,112,105,.28);
+  border:
+    .5px solid rgba(153, 112, 105, .28);
 }
 
 .cell.ok {
-  border-color: rgba(255,255,255,.1);
+  border-color:
+    rgba(255, 255, 255, .1);
 }
 
 
-/* 실제 퍼즐 조각 */
+/* =========================================================
+   퍼즐 조각
+========================================================= */
 
 .piece {
   position: absolute;
@@ -210,15 +262,19 @@ button {
   width: 25%;
   height: 25%;
 
-  background-image: url('bouquet.png');
-  background-size: 400% 400%;
+  background-image:
+    url('bouquet.png');
+
+  background-size:
+    400% 400%;
 
   z-index: 10;
 
   touch-action: none;
   user-select: none;
 
-  box-shadow: 0 2px 7px rgba(79,50,45,.22);
+  box-shadow:
+    0 2px 7px rgba(79, 50, 45, .22);
 
   transition:
     transform .12s ease,
@@ -228,54 +284,63 @@ button {
 .piece.dragging {
   z-index: 50;
 
-  transform: scale(1.05);
+  transform:
+    scale(1.05);
 
   box-shadow:
-    0 10px 24px rgba(75,46,41,.3);
+    0 10px 24px rgba(75, 46, 41, .3);
 
   transition: none;
 }
 
 .piece.locked {
   pointer-events: none;
+
   box-shadow: none;
 }
 
 .piece::after {
-  content: '';
+  content: "";
 
   position: absolute;
+
   inset: 0;
 
   border:
-    1px solid rgba(255,255,255,.38);
+    1px solid rgba(255, 255, 255, .38);
 
   pointer-events: none;
 }
 
 
-/* 퍼즐 조각 보관 영역 */
+/* =========================================================
+   아래 퍼즐 조각 영역
+========================================================= */
 
 .tray-title {
+  margin:
+    0 0 5px;
+
   text-align: center;
 
   font-size: 12px;
-  color: #9c7771;
 
-  margin: 0 0 5px;
+  color: #9c7771;
 }
 
 .tray {
   height: 132px;
 
-  padding: 4px 12px 15px;
+  padding:
+    4px 12px 15px;
 
   display: grid;
 
   grid-template-columns:
-    repeat(8,58px);
+    repeat(8, 58px);
 
-  grid-auto-rows: 58px;
+  grid-auto-rows:
+    58px;
 
   gap: 8px;
 
@@ -292,26 +357,29 @@ button {
 }
 
 .tray-slot {
+  position: relative;
+
   width: 58px;
   height: 58px;
 
-  border-radius: 14px;
-
-  background: #fff;
-
-  box-shadow:
-    0 4px 14px rgba(123,80,73,.1);
-
-  position: relative;
-
   overflow: hidden;
+
+  background:
+    #ffffff;
 
   border:
     1px solid #f0ddd6;
+
+  border-radius:
+    14px;
+
+  box-shadow:
+    0 4px 14px rgba(123, 80, 73, .1);
 }
 
 .tray-piece {
   position: absolute;
+
   inset: 0;
 
   background-image:
@@ -325,11 +393,12 @@ button {
 
 
 /* =========================================================
-   퍼즐 완성 후 화면
+   퍼즐 완성 후 꽃다발
 ========================================================= */
 
 #completeView {
   position: absolute;
+
   inset: 0;
 
   z-index: 20;
@@ -339,12 +408,243 @@ button {
 
 #completeImg {
   position: absolute;
+
   inset: 0;
 
   width: 100%;
   height: 100%;
 
   object-fit: cover;
+}
+
+
+/* =========================================================
+   웨딩 사진 카드
+   꽃 위쪽에 카드가 있고
+   나무 막대가 아래 꽃 사이로 들어가는 형태
+========================================================= */
+
+.photo-frame {
+  position: absolute;
+
+  /*
+     ★ 사진 위치
+
+     left 숫자 ↑ = 오른쪽
+     left 숫자 ↓ = 왼쪽
+
+     top 숫자 ↑ = 아래
+     top 숫자 ↓ = 위
+  */
+
+  left: 50%;
+  top: 8%;
+
+  transform:
+    translateX(-50%)
+    rotate(-1deg);
+
+  /*
+     ★ 사진 크기
+     숫자를 키우면 사진이 커짐
+  */
+
+  width: 25%;
+
+  aspect-ratio:
+    4 / 3;
+
+  z-index: 35;
+
+  padding:
+    4px 4px 13px;
+
+  background:
+    rgba(255, 255, 255, .98);
+
+  border:
+    1px solid rgba(220, 202, 194, .8);
+
+  border-radius:
+    3px;
+
+  box-shadow:
+    0 4px 12px rgba(70, 45, 40, .20);
+
+  display: none;
+
+  cursor: pointer;
+}
+
+.photo-frame.show {
+  display: block;
+}
+
+
+/* =========================================================
+   사진 아래 나무 막대
+========================================================= */
+
+.photo-frame::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 100%;
+
+  transform:
+    translateX(-50%);
+
+  /*
+     ★ 나무 막대 두께
+  */
+
+  width: 3px;
+
+  /*
+     ★ 나무 막대 길이
+     숫자를 키우면 더 아래까지 내려감
+  */
+
+  height: 125px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #8f6a4d 0%,
+      #cda77f 45%,
+      #e0bd96 55%,
+      #896548 100%
+    );
+
+  border-radius:
+    3px;
+
+  box-shadow:
+    1px 1px 2px rgba(75, 48, 34, .18);
+
+  /*
+     카드 뒤 + 꽃 위에 보이도록
+  */
+
+  z-index: -1;
+}
+
+
+/* =========================================================
+   업로드된 웨딩 사진
+========================================================= */
+
+.photo-preview {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius:
+    1px;
+
+  z-index: 2;
+
+  display: none;
+}
+
+
+/* =========================================================
+   사진 업로드 전 카드
+========================================================= */
+
+.photo-placeholder {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  border:
+    1px dashed #dfb6b3;
+
+  background:
+    #fffaf8;
+
+  color:
+    #ad7b79;
+
+  font-size:
+    9px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 2px;
+
+  text-align: center;
+
+  z-index: 2;
+}
+
+.photo-placeholder span {
+  font-size:
+    17px;
+}
+
+.photo-input {
+  display: none;
+}
+
+
+/* =========================================================
+   웨딩 사진 넣기 버튼
+========================================================= */
+
+.photo-upload-btn {
+  position: absolute;
+
+  left: 50%;
+  bottom: 16px;
+
+  transform:
+    translateX(-50%);
+
+  z-index: 45;
+
+  padding:
+    10px 17px;
+
+  border:
+    1px solid rgba(216, 153, 154, .65);
+
+  border-radius:
+    999px;
+
+  background:
+    rgba(255, 250, 247, .96);
+
+  color:
+    #9f6869;
+
+  font-size:
+    12px;
+
+  white-space:
+    nowrap;
+
+  box-shadow:
+    0 5px 15px rgba(100, 60, 55, .13);
+
+  display: none;
+
+  cursor: pointer;
+}
+
+.photo-upload-btn.show {
+  display: block;
 }
 
 
@@ -363,253 +663,268 @@ button {
   background:
     transparent;
 
-  border-radius: 50%;
+  border-radius:
+    50%;
 
   z-index: 40;
+
+  cursor: pointer;
 }
 
 
-/* ★ 꽃 옆 큰 반짝이 */
+/* =========================================================
+   ★ 흰색 큰 반짝이
+
+   이모지 ✨를 사용하지 않고
+   CSS로 흰색 반짝이를 직접 만듦
+========================================================= */
 
 .hotspot::after {
-  content: '✨';
+  content: "";
 
   position: absolute;
 
-  right: -15px;
-  top: -19px;
+  left:
+    calc(100% - 4px);
 
-  font-size: 32px;
+  top:
+    -17px;
 
-  line-height: 1;
+  width:
+    32px;
+
+  height:
+    32px;
+
+  background:
+    #ffffff;
+
+  clip-path:
+    polygon(
+      50% 0%,
+      57% 40%,
+      100% 50%,
+      57% 60%,
+      50% 100%,
+      43% 60%,
+      0% 50%,
+      43% 40%
+    );
 
   filter:
     drop-shadow(
-      0 2px 6px rgba(255,255,255,.95)
+      0 0 3px rgba(255, 255, 255, 1)
+    )
+    drop-shadow(
+      0 0 8px rgba(255, 255, 255, .95)
+    )
+    drop-shadow(
+      0 0 13px rgba(255, 255, 255, .7)
     );
 
   animation:
-    sparklePulse 1.15s ease-in-out
-    infinite alternate;
+    whiteSparkleBig
+    1.05s
+    ease-in-out
+    infinite
+    alternate;
 
-  pointer-events: none;
+  pointer-events:
+    none;
 }
 
-@keyframes sparklePulse {
+
+/* 작은 보조 반짝이 */
+
+.hotspot::before {
+  content: "";
+
+  position: absolute;
+
+  left:
+    calc(100% + 26px);
+
+  top:
+    19px;
+
+  width:
+    14px;
+
+  height:
+    14px;
+
+  background:
+    #ffffff;
+
+  clip-path:
+    polygon(
+      50% 0%,
+      58% 40%,
+      100% 50%,
+      58% 60%,
+      50% 100%,
+      42% 60%,
+      0% 50%,
+      42% 40%
+    );
+
+  filter:
+    drop-shadow(
+      0 0 3px #ffffff
+    )
+    drop-shadow(
+      0 0 6px rgba(255, 255, 255, .9)
+    );
+
+  animation:
+    whiteSparkleSmall
+    .9s
+    ease-in-out
+    infinite
+    alternate;
+
+  animation-delay:
+    .25s;
+
+  pointer-events:
+    none;
+}
+
+
+/* 큰 반짝이 애니메이션 */
+
+@keyframes whiteSparkleBig {
 
   from {
     transform:
-      scale(.8)
-      rotate(-8deg);
+      scale(.58)
+      rotate(0deg);
 
-    opacity: .7;
+    opacity:
+      .48;
   }
 
   to {
     transform:
       scale(1.22)
-      rotate(8deg);
+      rotate(45deg);
 
-    opacity: 1;
+    opacity:
+      1;
   }
-
 }
 
 
-/* 꽃말 확인 완료 */
+/* 작은 반짝이 애니메이션 */
 
-.hotspot.seen::after {
-  content: '✓';
+@keyframes whiteSparkleSmall {
 
-  right: -9px;
-  top: -9px;
+  from {
+    transform:
+      scale(.5)
+      rotate(20deg);
 
-  width: 28px;
-  height: 28px;
+    opacity:
+      .35;
+  }
 
-  border-radius: 50%;
+  to {
+    transform:
+      scale(1.15)
+      rotate(65deg);
 
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  background: #cf7f86;
-
-  color: white;
-
-  font-size: 15px;
-
-  animation: none;
+    opacity:
+      1;
+  }
 }
 
 
 /* =========================================================
-   웨딩 사진 영역
+   꽃말 확인 완료 표시
 ========================================================= */
 
-.photo-frame {
-
-  position: absolute;
-
-  left: 50%;
-  top: 61%;
-
-  transform:
-    translate(-50%,-50%)
-    rotate(-2deg);
-
-  width: 31%;
-
-  aspect-ratio:
-    3 / 4;
-
-  z-index: 30;
-
-  background:
-    rgba(255,255,255,.96);
-
-  padding:
-    5px 5px 18px;
-
-  border-radius: 5px;
-
-  box-shadow:
-    0 7px 20px rgba(76,45,39,.22);
-
+.hotspot.seen::before {
   display: none;
 }
 
+.hotspot.seen::after {
+  content:
+    "✓";
 
-/* 퍼즐 완성 후에만 표시 */
+  left:
+    calc(100% - 2px);
 
-.photo-frame.show {
-  display: block;
-}
+  top:
+    -10px;
 
+  width:
+    29px;
 
-/* 실제 업로드 사진 */
+  height:
+    29px;
 
-.photo-preview {
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-
-  border-radius: 2px;
-
-  display: none;
-}
-
-
-/* 사진 선택 전 */
-
-.photo-placeholder {
-
-  width: 100%;
-  height: 100%;
-
-  border:
-    1px dashed #d9aca9;
-
-  background:
-    rgba(255,247,244,.92);
-
-  color: #b27876;
-
-  font-size: 11px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 4px;
-
-  text-align: center;
-}
-
-.photo-placeholder span {
-  font-size: 20px;
-}
-
-
-/* 실제 file input 숨김 */
-
-.photo-input {
-  display: none;
-}
-
-
-/* 웨딩 사진 넣기 버튼 */
-
-.photo-upload-btn {
-
-  position: absolute;
-
-  left: 50%;
-
-  bottom: 16px;
-
-  transform:
-    translateX(-50%);
-
-  z-index: 45;
-
-  border:
-    1px solid rgba(216,153,154,.65);
-
-  background:
-    rgba(255,250,247,.96);
-
-  color:
-    #9f6869;
+  clip-path:
+    none;
 
   border-radius:
-    999px;
-
-  padding:
-    10px 17px;
-
-  font-size:
-    12px;
-
-  box-shadow:
-    0 5px 15px rgba(100,60,55,.13);
+    50%;
 
   display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  background:
+    rgba(255, 255, 255, .96);
+
+  color:
+    #c87d83;
+
+  font-size:
+    15px;
+
+  font-weight:
+    bold;
+
+  filter:
+    drop-shadow(
+      0 2px 5px rgba(70, 40, 40, .18)
+    );
+
+  animation:
     none;
 }
 
-.photo-upload-btn.show {
-  display: block;
-}
-
 
 /* =========================================================
-   팝업
+   공통 팝업 배경
 ========================================================= */
 
 .overlay {
-
   position: fixed;
+
   inset: 0;
 
+  padding:
+    24px;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
   background:
-    rgba(68,45,42,.50);
+    rgba(68, 45, 42, .50);
 
   backdrop-filter:
     blur(5px);
 
-  display: none;
-
-  align-items: center;
-  justify-content: center;
-
-  padding: 24px;
+  -webkit-backdrop-filter:
+    blur(5px);
 
   z-index: 100;
 }
@@ -618,80 +933,90 @@ button {
   display: flex;
 }
 
+
+/* =========================================================
+   팝업 카드
+========================================================= */
+
 .card {
-
   width:
-    min(330px,90vw);
-
-  background:
-    rgba(255,251,248,.97);
-
-  border-radius:
-    28px;
+    min(330px, 90vw);
 
   padding:
     28px 22px;
+
+  background:
+    rgba(255, 251, 248, .97);
+
+  border-radius:
+    28px;
 
   text-align:
     center;
 
   box-shadow:
-    0 18px 48px rgba(65,40,36,.25);
+    0 18px 48px rgba(65, 40, 36, .25);
 }
 
 .card .emoji {
-  font-size: 35px;
+  font-size:
+    35px;
 }
 
 .card h2 {
-
-  font-size: 21px;
-
-  font-weight: 500;
-
   margin:
     10px 0 8px;
+
+  font-size:
+    21px;
+
+  font-weight:
+    500;
 }
 
 .card p {
+  margin:
+    0;
 
-  font-size: 14px;
+  font-size:
+    14px;
 
   line-height:
     1.75;
 
   color:
     #745853;
-
-  margin:
-    0;
 }
 
 .card button {
+  margin-top:
+    19px;
 
-  border: 0;
+  padding:
+    12px 22px;
+
+  border:
+    0;
+
+  border-radius:
+    999px;
 
   background:
     #d68a90;
 
   color:
-    white;
+    #ffffff;
 
-  border-radius:
-    999px;
-
-  padding:
-    12px 22px;
-
-  margin-top:
-    19px;
+  cursor:
+    pointer;
 }
 
 
-/* 꽃말 카드 */
+/* =========================================================
+   꽃말 카드
+========================================================= */
 
 .flower-name {
-
   font-size:
     13px;
 
@@ -703,19 +1028,17 @@ button {
 }
 
 .flower-meaning {
+  margin:
+    8px 0 11px;
 
   font-size:
     21px;
 
   font-weight:
     600;
-
-  margin:
-    8px 0 11px;
 }
 
 .flower-message {
-
   font-size:
     14px;
 
@@ -727,10 +1050,11 @@ button {
 }
 
 
-/* 마지막 축하 */
+/* =========================================================
+   마지막 축하 화면
+========================================================= */
 
 .final-title {
-
   font-family:
     'Parisienne', cursive;
 
@@ -742,10 +1066,11 @@ button {
 }
 
 
-/* 떨어지는 꽃/반짝이 */
+/* =========================================================
+   마지막 꽃잎 / 반짝이
+========================================================= */
 
 .spark {
-
   position:
     fixed;
 
@@ -764,20 +1089,119 @@ button {
 
 @keyframes fall {
 
-  to {
+  from {
+    transform:
+      translateY(0)
+      rotate(0deg);
 
+    opacity:
+      1;
+  }
+
+  to {
     transform:
       translateY(110vh)
       rotate(320deg);
 
     opacity:
       0;
+  }
+}
 
+
+/* =========================================================
+   작은 모바일 화면 대응
+========================================================= */
+
+@media (max-height: 700px) {
+
+  .top {
+    height:
+      48px;
+  }
+
+  .board {
+    width:
+      min(84vw, 45vh);
+  }
+
+  .tray {
+    height:
+      112px;
+  }
+
+  .tray-slot {
+    width:
+      52px;
+
+    height:
+      52px;
+  }
+
+  .tray {
+    grid-template-columns:
+      repeat(8, 52px);
+
+    grid-auto-rows:
+      52px;
+  }
+
+  .photo-frame {
+    width:
+      23%;
+  }
+
+  .photo-frame::after {
+    height:
+      100px;
   }
 
 }
 
+
+/* =========================================================
+   아주 좁은 모바일
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .start-title {
+    font-size:
+      42px;
+  }
+
+  .top h1 {
+    font-size:
+      14px;
+  }
+
+  .count {
+    right:
+      10px;
+
+    font-size:
+      11px;
+  }
+
+  .hotspot::after {
+    width:
+      28px;
+
+    height:
+      28px;
+  }
+
+  .hotspot::before {
+    width:
+      12px;
+
+    height:
+      12px;
+  }
+
+}
 </style>
+
 </head>
 
 
